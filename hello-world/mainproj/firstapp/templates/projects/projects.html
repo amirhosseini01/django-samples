@@ -3,8 +3,26 @@
 
 {% block content %}
 <h1>List of projects</h1>
-{% for project in projects %}
-    <a href="{% url 'project' project.id %}">{{project}}</a>
-{%  endfor%}
+<a href="{% url 'create_project' %}">add new project</a>
+<table>
+    <thead>
+        <tr>
+            <th>title</th>
+            <th>operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{project}}</td>
+                <td>
+                    <a href="{% url 'project' project.id %}">detail</a> |
+                    <a href="{% url 'update_project' project.id %}">edit</a> |
+                    <a href="{% url 'delete_project' project.id %}">delete</a>
+                </td>
+            </tr>
+        {%  endfor%}
+    </tbody>
+</table>
 
 {% endblock content %}
