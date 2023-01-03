@@ -5,4 +5,4 @@ class ProjectForm(ModelForm):
     class Meta:
         model = FirstApp
         # fields = '__all__'
-        fields = ['title', 'tags'] 
+        fields = ['title', 'tags', 'img'] 

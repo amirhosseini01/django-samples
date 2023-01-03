@@ -7,6 +7,7 @@ class FirstApp(models.Model):
     desc = models.TextField(max_length=2000, null=True, blank=True)
     link = models.CharField(max_length=2000, null=True, blank=True)
     tags = models.ManyToManyField('Tag', blank=True)
+    img = models.ImageField(default= "default.jpg", null=True, blank=True)
     vote_total = models.IntegerField(default=0, null=True, blank=True)
     vote_ratio = models.IntegerField(default=0, null=True, blank=True)
     createAt = models.DateField(auto_now_add=True)
