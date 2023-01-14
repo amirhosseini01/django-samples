@@ -4,6 +4,7 @@ from .models import Profile
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
 # Create your views here.
 
 @login_required(login_url="login")
@@ -24,7 +25,7 @@ def LoginPage(request):
         try:
             user = User.objects.get(username = username)
         except:
-            print('err')
+            messages.error(request=request, message= 'an unhandled error occurred! call support')
         
         user = authenticate(request=request, username= username, password = password)
 
@@ -32,7 +33,7 @@ def LoginPage(request):
             login(request, user)
             return redirect('profiles')
         else:
-            print('incorrect username or password')
+            messages.error(request=request, message= 'incorrect username or password')
     return render(request, 'login.html')
 
 def Logout_User(request):
