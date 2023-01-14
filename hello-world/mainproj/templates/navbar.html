@@ -1,3 +1,8 @@
 {% load static %}
 <h2>Navbar is here</h2>
+{% if request.user.is_authenticated %}
+    <a href="{% url 'logout' %}">logout</a>
+{% else %}
+    <a href="{% url 'login' %}">login</a>
+{% endif %}
 <img src="{% static 'images/avatar.png' %}" />
