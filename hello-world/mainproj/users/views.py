@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .forms import CustomUserCreationForm
 # Create your views here.
 
 @login_required(login_url="login")
@@ -42,10 +43,10 @@ def Logout_User(request):
     return redirect('login')
 
 def RegisterUser(request):
-    form = UserCreationForm()
+    form = CustomUserCreationForm()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             # give instance without saving in database
             user = form.save(commit=False)
