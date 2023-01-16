@@ -4,6 +4,16 @@
 
 <form action="{% url 'register' %}" method="post">
     {% csrf_token %}
+    {% for field in form %}
+        <label>{{field.label}}</label>
+        {{field}}
+        {% if field.help_text %}
+            <p>
+                <small>{{field.help_text}}</small>
+            </p>
+        {% endif %}
+        <hr />
+    {% endfor %}
     {{form.as_p}}
     <input type="submit" value="Register user">
 </form>
