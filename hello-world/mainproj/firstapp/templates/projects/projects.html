@@ -4,6 +4,10 @@
 {% block content %}
 <h1>List of projects</h1>
 <a href="{% url 'create_project' %}">add new project</a>
+<form action="{% url 'projects' %}" method="get">
+    <input type="text" name="q" value="{{q}}" placeholder="search for project" >
+    <input type="submit" value="search">
+</form>
 <table>
     <thead>
         <tr>

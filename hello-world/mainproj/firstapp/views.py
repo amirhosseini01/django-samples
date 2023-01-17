@@ -1,10 +1,24 @@
 from django.shortcuts import render, redirect
 from .models import FirstApp
 from .forms import ProjectForm
+from django.db.models import Q
 
 def projects(request):
-    projects = FirstApp.objects.all()
-    context = {'projects': projects}
+    q = request.GET.get('q')
+    if q == None:
+        q = ''
+    # Q can use operator like: "|" , "&"
+    # Q(title__icontains=q) | Q(desc__icontains=q)
+    # Q(title__icontains=q) & Q(desc__icontains=q)
+
+    projects = FirstApp.objects.filter(
+        Q(title__icontains=q) | Q(desc__icontains=q)
+    )
+
+    # some parameters instead of __icontains: "__iexact", "__in"
+    # we can use ".distinct()" method before ".filter()" when query on different tables
+
+    context = {'projects': projects, 'q': q}
     return render(request, 'projects/projects.html', context)
 
 def project(request, pk):
