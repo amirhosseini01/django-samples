@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # custom
     'firstapp.apps.FirstappConfig',
     'users.apps.UsersConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
