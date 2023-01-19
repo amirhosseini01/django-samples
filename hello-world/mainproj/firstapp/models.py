@@ -17,6 +17,12 @@ class FirstApp(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ## desc:
+        #ordering = ['-createAt']
+        # asc:
+        ordering = ['createAt']
 
 class Review(models.Model):
     firstApp = models.ForeignKey(FirstApp, on_delete= models.CASCADE)

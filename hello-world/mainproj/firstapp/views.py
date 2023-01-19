@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import FirstApp
 from .forms import ProjectForm
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 def projects(request):
     q = request.GET.get('q')
@@ -15,10 +16,21 @@ def projects(request):
         Q(title__icontains=q) | Q(desc__icontains=q)
     )
 
+    # pagination
+    page = request.GET.get('pageNu')
+    pageNu = 1
+    if page != None:
+        pageNu = int(page)
+    pageSize = 2
+    paginator = Paginator(projects, pageSize)
+    if(paginator.num_pages < pageNu):
+        pageNu = paginator.num_pages
+    projects = paginator.page(pageNu)
+
     # some parameters instead of __icontains: "__iexact", "__in"
     # we can use ".distinct()" method before ".filter()" when query on different tables
 
-    context = {'projects': projects, 'q': q}
+    context = {'projects': projects, 'q': q, 'paginator': paginator}
     return render(request, 'projects/projects.html', context)
 
 def project(request, pk):
