@@ -23,6 +23,7 @@ class FirstApp(models.Model):
         #ordering = ['-createAt']
         # asc:
         ordering = ['createAt']
+        unique_together = [['owner', 'link']]
 
 class Review(models.Model):
     firstApp = models.ForeignKey(FirstApp, on_delete= models.CASCADE)
