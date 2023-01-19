@@ -4,6 +4,9 @@
 {% block content %}
 <h1>title: {{project.title}}</h1>
 <hr>
+<p>body:</p>
+<p>{{project.desc|linebreaksbr}}</p>
+<hr>
 <h2>tags:</h2>
 {% for tag in project.tags.all %}
     <p>{{tag}}</p>
