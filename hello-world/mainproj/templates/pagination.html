@@ -1,0 +1,15 @@
+{% if projects.has_other_pages %}
+    <p>
+        <small>current page is: {{projects.number}}</small>
+        <br>
+        <small>total page is: {{paginator.page_range}}</small>
+        {% if projects.has_next %}
+            <br>
+            <small>next page is: {{projects.next_page_number}}</small>
+        {% endif %}
+        {% if projects.has_previous %}
+            <br>
+            <small>previous page is: {{projects.previous_page_number}}</small>
+        {% endif %}
+    </p>
+{% endif %}
