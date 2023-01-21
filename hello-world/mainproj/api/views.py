@@ -24,3 +24,10 @@ def GetProject(request, pk):
     projects = FirstApp.objects.get(id=pk)
     serializer = FirstAppSerializer(projects, many=False)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def PostProject(request, pk):
+    projects = FirstApp.objects.get(id=pk)
+    print(request.data)
+    serializer = FirstAppSerializer(projects, many=False)
+    return Response(serializer.data)

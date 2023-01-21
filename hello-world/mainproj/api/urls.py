@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.GetRoutes),
     path('projects/', views.GetProjects),
     path('projects/<str:pk>', views.GetProject),
+    path('PostProject/<str:pk>', views.PostProject),
 ]
